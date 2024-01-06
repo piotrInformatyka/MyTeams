@@ -1,6 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Text.Json.Nodes;
 using Teams.Application.Common.Abstracts;
 using Teams.Domain.Entities;
+using Teams.Infrastructure.Exceptions;
 
 namespace Teams.Infrastructure.Clients;
 
@@ -18,10 +21,19 @@ internal sealed class RandomMemberClient : IRandomMemberClient
     public async Task<Member> GetRandomMember()
     {
         var response = await _httpClient.GetAsync(_apiUrl);
-        response.EnsureSuccessStatusCode();
+        var result = await HandleResponseAsync(response);
 
-        var test = response.Content;
+        return result;
+    }
 
-        return new Member("test", "test", "test");
+    private async Task<Member> HandleResponseAsync(HttpResponseMessage response)
+    {
+        if(!response.IsSuccessStatusCode)
+            throw new Exception($"Reques finished with {response.StatusCode}");
+    
+        var content = await response.Content.ReadAsStringAsync();
+        var result = JsonConvert.DeserializeObject<RandomMemberResponse>(content);
+
+        return result is null ? throw new RandomDataClientException("Can not deserialize response") : result.AsMember();
     }
 }

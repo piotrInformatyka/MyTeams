@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Teams.Application;
 using Teams.Domain;
 using Teams.Infrastructure;

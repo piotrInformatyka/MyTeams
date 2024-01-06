@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Teams.Application.Functions.Members.Commands;
+using Teams.Application.Functions.Members;
 
 namespace Teams.WebApp.Controllers
 {
@@ -16,12 +16,9 @@ namespace Teams.WebApp.Controllers
         }
 
         [HttpPost("{teamId}/random")]
-        public async Task<IActionResult> RandomMember(Guid teamId, AddRandomMemberCommand command)
+        public async Task<ActionResult> RandomMember(Guid teamId, AddRandomMemberCommand command)
         {
-            if (teamId != command.TeamId)
-                return BadRequest();
-
-            await _mediator.Send(command);
+            await _mediator.Send(command with { TeamId = teamId});
             return Ok();
         }
     }

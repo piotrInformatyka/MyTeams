@@ -3,7 +3,7 @@ using Teams.Application.Common.Abstracts;
 using Teams.Application.Common.Exceptions;
 using Teams.Domain.Repositories;
 
-namespace Teams.Application.Functions.Members.Commands;
+namespace Teams.Application.Functions.Members;
 
 public record AddRandomMemberCommand(Guid TeamId) : IRequest;
 
@@ -12,7 +12,7 @@ public class AddRandomMemberCommandHandler : IRequestHandler<AddRandomMemberComm
     private readonly ITeamRepository _teamRepository;
     private readonly IRandomMemberClient _randomMemberClient;
 
-    public AddRandomMemberCommandHandler(ITeamRepository teamRepository, 
+    public AddRandomMemberCommandHandler(ITeamRepository teamRepository,
         IRandomMemberClient randomMemberClient)
     {
         _teamRepository = teamRepository;
