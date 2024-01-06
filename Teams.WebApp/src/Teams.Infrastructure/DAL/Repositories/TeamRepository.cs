@@ -14,4 +14,6 @@ internal sealed class TeamRepository : ITeamRepository
     }
 
     public async Task<IEnumerable<Team>> GetAllAsync() => await _dbContext.Teams.Include(x => x.Members).ToListAsync();
+    
+    public async Task<Team?> GetTeamAsync(Guid id) => await _dbContext.Teams.Include(x => x.Members).SingleOrDefaultAsync(x => x.Id == id);
 }

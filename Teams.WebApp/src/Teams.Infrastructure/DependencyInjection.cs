@@ -2,7 +2,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Teams.Application.Common.Abstracts;
 using Teams.Domain.Repositories;
+using Teams.Infrastructure.Clients;
 using Teams.Infrastructure.DAL;
 using Teams.Infrastructure.DAL.Repositories;
 using Teams.Infrastructure.Exceptions;
@@ -16,6 +18,7 @@ public static class DependencyInjection
         services.AddScoped<ITeamRepository, TeamRepository>();
         services.AddSingleton<ExceptionMiddleware>();
         services.AddDbContext(configuration);
+        services.AddHttpClient<IRandomMemberClient, RandomMemberClient>();
         return services;
     }
 
