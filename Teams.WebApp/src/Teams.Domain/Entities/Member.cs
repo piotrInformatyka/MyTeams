@@ -14,7 +14,6 @@ public class Member
     protected Member() { }
     public Member(string name, string email, string phoneNumber)
     {
-        Id = Guid.NewGuid();
         Name = name;
         Email = email;
         PhoneNumber = phoneNumber;
