@@ -9,7 +9,7 @@ public class Team
     public Guid Id { get; }
     public IEnumerable<Member> Members => _members;
     
-    protected Team() { }
+    public Team() { }
 
     public void AddMember(Member member)
     {

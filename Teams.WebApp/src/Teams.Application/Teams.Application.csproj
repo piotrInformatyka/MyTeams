@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Functions\Teams\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Teams.Domain\Teams.Domain.csproj" />
   </ItemGroup>
 

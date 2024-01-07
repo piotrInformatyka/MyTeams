@@ -1,6 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Teams.Application.Functions.Members;
+using Teams.Application.Functions.Teams;
 
 namespace Teams.WebApp.Controllers
 {
@@ -20,6 +21,13 @@ namespace Teams.WebApp.Controllers
         {
             await _mediator.Send(command with { TeamId = teamId});
             return Ok();
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> GetTeams()
+        {
+            var result = await _mediator.Send(new GetTeamsQuery());
+            return Ok(result);
         }
     }
 }
