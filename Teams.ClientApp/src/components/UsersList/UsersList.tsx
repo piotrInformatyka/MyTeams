@@ -2,8 +2,16 @@ import { DataGrid } from "@mui/x-data-grid";
 import { User, users } from "../../data/usersData.tsx";
 import UserStatus from "../UserStatus/UserStatus.tsx";
 import { format } from "date-fns";
+import { useState } from "react";
+import { Modal } from "@mui/material";
+import UserProfile from "../UserProfile/UserProfile.tsx";
 
 const UsersList = () => {
+  const [openUserProfile, setOpenUserProfile] = useState({
+    open: false,
+    userId: 0,
+  });
+
   const rows = users;
   const columns = [
     {
@@ -36,16 +44,34 @@ const UsersList = () => {
       valueFormatter: ({ value }: { value: string }) =>
         format(new Date(value), "dd.MM.yyyy"),
     },
-    // {
-    //   field: "status",
-    //   headerName: "Akcje",
-    //   flex: 1,
-    //   renderCell: ({ row: { name: name } }) => {
-    //     return <div>test + {name}</div>;
-    //   },
-    // },
+    {
+      field: "actions",
+      headerName: "Akcje",
+      flex: 1,
+      renderCell: ({ row }: { row: User }) => {
+        return (
+          <button
+            onClick={() => setOpenUserProfile({ open: true, userId: row.id })}
+          >
+            {row.name}
+          </button>
+        );
+      },
+    },
   ];
 
-  return <DataGrid rows={rows} columns={columns} disableColumnMenu></DataGrid>;
+  return (
+    <div>
+      <DataGrid rows={rows} columns={columns} disableColumnMenu></DataGrid>
+      <Modal
+        open={openUserProfile.open}
+        onClose={() => setOpenUserProfile({ ...openUserProfile, open: false })}
+      >
+        <UserProfile
+          user={users.find((x) => x.id == openUserProfile.userId)}
+        ></UserProfile>
+      </Modal>
+    </div>
+  );
 };
 export default UsersList;

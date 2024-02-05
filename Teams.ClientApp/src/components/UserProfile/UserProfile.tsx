@@ -2,13 +2,14 @@ import styles from "./UserProfile.module.scss";
 import UserProfileField from "./UserProfileField/UserProfileField.tsx";
 import { useState } from "react";
 import UserStatus from "../UserStatus/UserStatus.tsx";
+import { User } from "../../data/usersData.tsx";
 
-const UserProfile = () => {
+const UserProfile = ({ user }: { user: User | undefined }) => {
   const [selectedField, setSelectedField] = useState("");
   const [userFields, setUserFields] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
+    name: user!.name,
+    email: user!.email,
+    phoneNumber: user!.phoneNumber,
   });
 
   const handleUserFieldChange = (newValue: string, id: string) => {
@@ -21,7 +22,7 @@ const UserProfile = () => {
 
   return (
     <div className={styles.container}>
-      <h3>Jan Kowalski</h3>
+      <h3>{user!.name}</h3>
       <div className={styles.wrapper}>
         <div className={styles.imageSection}>
           <img
