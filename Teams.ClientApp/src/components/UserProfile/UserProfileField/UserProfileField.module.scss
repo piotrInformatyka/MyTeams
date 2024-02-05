@@ -1,0 +1,35 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  //width: 100%;
+
+  label{
+    font-size: 12px;
+    color: #8B7E8B;
+  }
+
+  button{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin: auto;
+  }
+}
+
+.rowContainer{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+
+
+  input{
+    border: 1px solid #E2DFE2;
+    border-radius: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+}

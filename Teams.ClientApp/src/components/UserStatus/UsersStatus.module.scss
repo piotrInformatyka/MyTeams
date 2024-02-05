@@ -1,0 +1,16 @@
+.userStatus{
+  padding: 2px 8px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+
+  &Active {
+    background: #E7F7EB;
+    color: #218141;
+  }
+
+  &Blocked{
+    background: #F7ECEB;
+    color: #AE2217;
+  }
+}

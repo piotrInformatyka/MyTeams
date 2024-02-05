@@ -1,0 +1,43 @@
+.container{
+  display: flex;
+  flex-direction: column;
+
+  width: 480px;
+  border: 1px solid #201d20;
+  border-radius: 8px;
+  padding: 16px;
+
+  h3{
+    font-size: 18px;
+    font-family: Arial, serif;
+    font-weight: lighter;
+  }
+}
+
+.wrapper{
+  display: flex;
+  gap: 24px;
+}
+
+.closeButton{
+    border: 1px solid #CFC9CF;
+    background: white;
+    border-radius: 8px;
+    padding: 6px 18px;
+    font-weight: bold;
+    margin-top: 44px;
+}
+
+
+.imageSection{
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  img{
+    width: 130px;
+    height: 130px;
+    border: 1px solid #E2DFE2;
+    border-radius: 8px;
+  }
+}

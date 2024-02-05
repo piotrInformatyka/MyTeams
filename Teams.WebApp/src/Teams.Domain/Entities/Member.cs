@@ -6,8 +6,8 @@ public class Member
 {
     public Guid Id { get; }
     public Name Name { get; }
-    public Email Email { get; }
-    public PhoneNumber PhoneNumber { get; }
+    public Email Email { get; private set; }
+    public PhoneNumber PhoneNumber { get; private set; }
     public DateTimeOffset CreatedAt { get; }
     public bool IsBlocked { get; private set; }
     
@@ -22,4 +22,15 @@ public class Member
     }
 
     public void Block() => IsBlocked = !IsBlocked;
+
+    public void ChangeContact(Email? email, PhoneNumber? phoneNumber)
+    {
+        if(email is null && phoneNumber is null)
+            throw new ArgumentException("At least one of the contact details must be provided");
+
+        Email = email ?? Email;
+        PhoneNumber = phoneNumber ?? PhoneNumber;
+
+
+    }
 }

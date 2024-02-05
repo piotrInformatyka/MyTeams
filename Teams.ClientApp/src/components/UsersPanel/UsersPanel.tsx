@@ -1,4 +1,6 @@
 import styles from "./UsersPanel.module.scss";
+import UsersList from "../UsersList/UsersList.tsx";
+import UserProfile from "../UserProfile/UserProfile.tsx";
 
 const UsersPanel = () => (
   <div className={styles.wrapper}>
@@ -12,6 +14,8 @@ const UsersPanel = () => (
         <button>Dodaj członka zespołu</button>
       </div>
     </div>
+    <UsersList></UsersList>
+    <UserProfile></UserProfile>
   </div>
 );
 
