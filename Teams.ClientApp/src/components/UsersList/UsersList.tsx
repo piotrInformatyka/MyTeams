@@ -1,7 +1,7 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { User, users } from "../../data/usersData.tsx";
-
 import UserStatus from "../UserStatus/UserStatus.tsx";
+import { format } from "date-fns";
 
 const UsersList = () => {
   const rows = users;
@@ -33,6 +33,8 @@ const UsersList = () => {
       field: "dateCreated",
       headerName: "Data utworzenia",
       flex: 1,
+      valueFormatter: ({ value }: { value: string }) =>
+        format(new Date(value), "dd.MM.yyyy"),
     },
     // {
     //   field: "status",

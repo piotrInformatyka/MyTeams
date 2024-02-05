@@ -14,7 +14,8 @@ const UserProfileField = ({
   onSelectedFieldChange,
 }: UserProfileFieldProps) => {
   const [value, setValue] = useState(fieldValue);
-  const status = selectedField == id;
+  const enableEditing = selectedField == id;
+  const chosenAnotherField = !enableEditing && selectedField != "";
 
   const onValueChanged = (e: React.FormEvent<HTMLInputElement>) => {
     setValue(e.currentTarget.value);
@@ -33,7 +34,7 @@ const UserProfileField = ({
   return (
     <div className={styles.wrapper}>
       <label htmlFor={id}>{label}</label>
-      {status ? (
+      {enableEditing ? (
         <div className={styles.rowContainer}>
           <div>
             <input
@@ -57,9 +58,13 @@ const UserProfileField = ({
         <div className={styles.rowContainer}>
           <div>{value}</div>
           <div>
-            <button onClick={() => onSelectedFieldChange(id)}>
+            {chosenAnotherField ? (
               <PencilIcon />
-            </button>
+            ) : (
+              <button onClick={() => onSelectedFieldChange(id)}>
+                <PencilIcon />
+              </button>
+            )}
           </div>
         </div>
       )}
